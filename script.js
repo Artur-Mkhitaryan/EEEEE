@@ -1,4 +1,4 @@
-function generate(matLen,gr,grEat,pred) {
+function generate(matLen,gr,grEat,pred,worm,hum) {
     let matrix = []
     for (let i = 0; i < matLen; i++) {
         matrix[i] = []
@@ -30,11 +30,27 @@ function generate(matLen,gr,grEat,pred) {
             matrix[y][x] = 3
         }
     }
+    for (let i = 0; i < worm; i++) {
+        let x = Math.floor(Math.random()*matLen)
+        let y = Math.floor(Math.random()*matLen)
+        console.log(x,y);
+        if(matrix[y][x] == 0) {
+            matrix[y][x] = 4
+        }
+    }
+    for (let i = 0; i < pred; i++) {
+        let x = Math.floor(Math.random()*matLen)
+        let y = Math.floor(Math.random()*matLen)
+        console.log(x,y);
+        if(matrix[y][x] == 0) {
+            matrix[y][x] = 3
+        }
+    }
     return matrix
 }
 
 
-let matrix = generate(60,999,666,333)
+let matrix = generate(60,1000,250,150,500,777)
 
 let side = 15;
 let grassArr = []
