@@ -1,7 +1,7 @@
-class GrassEater extends Creature{
-    constructor(x,y){
+class GrassEater extends Creature {
+    constructor(x, y) {
         super(x,y);
-        this.energy = 70;
+        this.energy = 14;
     }
     getNewCoordinates() {
         return super.getNewCoordinates;
@@ -33,7 +33,7 @@ class GrassEater extends Creature{
 
             var newGrassEater = new GrassEater(newX, newY);
             grassEaterArr.push(newGrassEater);
-            this.energy = 70
+            this.energy = 14
         }
     }
 
@@ -57,7 +57,7 @@ class GrassEater extends Creature{
         var emptyCells = this.chooseCell(1);
         var newCell = random(emptyCells);
         if (newCell) {
-            this.energy+=2
+            this.energy++
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = matrix[this.y][this.x] ///kam 2 tiv@
@@ -71,7 +71,7 @@ class GrassEater extends Creature{
                 }
             }
 
-            if (this.energy >= 75) {
+            if (this.energy >= 20) {
                 this.mul()
             }
         } else {

@@ -1,7 +1,7 @@
 class Predator extends Creature {
     constructor(x, y) {
         super(x,y);
-        this.energy = 90;
+        this.energy = 29;
     }
     getNewCoordinates() {
         return super.getNewCoordinates;
@@ -33,7 +33,7 @@ class Predator extends Creature {
 
             var newPredator = new Predator(newX, newY);
             PredatorArr.push(newPredator);
-            this.energy = 90
+            this.energy = 29
         }
     }
 
@@ -56,8 +56,10 @@ class Predator extends Creature {
     eat() {
         var emptyCells = this.chooseCell(2);
         var newCell = random(emptyCells);
+        var emptyCells2 = this.chooseCell(4);
+        var newCell2 = random(emptyCells2);
         if (newCell) {
-            this.energy+=2
+            this.energy += 2
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = matrix[this.y][this.x] ///kam 2 tiv@
@@ -70,8 +72,23 @@ class Predator extends Creature {
                     break;
                 }
             }
+        }
+        else if (newCell2) {
+            this.energy++
+            var newX = newCell2[0];
+            var newY = newCell2[1];
+            matrix[newY][newX] = matrix[this.y][this.x] ///kam 2 tiv@
+            matrix[this.y][this.x] = 0
+            this.x = newX
+            this.y = newY
+            for (var i in WormArr) {
+                if (newX == WormArr[i].x && newY == WormArr[i].y) {
+                    WormArr.splice(i, 1);
+                    break;
+                }
+            }
 
-            if (this.energy >= 91) {
+            if (this.energy >= 30) {
                 this.mul()
             }
         } else {

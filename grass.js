@@ -1,5 +1,5 @@
 class Grass extends Creature {
-    chooseCell(character) {
+        chooseCell(character) {
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
@@ -19,7 +19,7 @@ class Grass extends Creature {
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
 
-        if (newCell && this.multiply >= 1) {
+        if (newCell && this.multiply >= 14) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 1;
@@ -31,10 +31,10 @@ class Grass extends Creature {
     }
     eat() {
         this.multiply++;
-        var emptyCells = this.chooseCell(69);
+        var emptyCells = this.chooseCell(4);
         var newCell = random(emptyCells);
 
-        if (newCell && this.multiply >= 1) {
+        if (newCell && this.multiply >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 1;
@@ -42,7 +42,16 @@ class Grass extends Creature {
             var newGrass = new Grass(newX, newY, 1);
             grassArr.push(newGrass);
             this.multiply = 0;
+            for (var i in WormArr) {
+                if (newX == WormArr[i].x && newY == WormArr[i].y) {
+                    WormArr.splice(i, 1);
+                    break;
+                }
+            }
 
+        } else if (!newCell) {
+            this.mul()
         }
+
     }
 }
