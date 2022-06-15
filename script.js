@@ -1,4 +1,4 @@
-function generate(matLen, gr, grEat, pred, worm, hum) {
+function generate(matLen, gr, grEat, pred, worm, hole, hum) {
     let matrix = []
     for (let i = 0; i < matLen; i++) {
         matrix[i] = []
@@ -35,6 +35,13 @@ function generate(matLen, gr, grEat, pred, worm, hum) {
             matrix[y][x] = 4
         }
     }
+    for (let i = 0; i < hole; i++) {
+        let x = Math.floor(Math.random() * matLen)
+        let y = Math.floor(Math.random() * matLen)
+        if (matrix[y][x] == 0) {
+            matrix[y][x] = 5
+        }
+    }
     for (let i = 0; i < hum; i++) {
         let x = Math.floor(Math.random() * matLen)
         let y = Math.floor(Math.random() * matLen)
@@ -46,19 +53,20 @@ function generate(matLen, gr, grEat, pred, worm, hum) {
 }
 
 
-let matrix = generate(30, 15, 25, 12, 55, 69)
+let matrix = generate(200,67,45,15,22,100,45)
 
-let side = 25
+let side = 5
 let grassArr = []
 let grassEaterArr = []
 let PredatorArr = []
 let WormArr = []
+let HoleArr = []
 let HumanArr = []
 
 function setup() {
     frameRate(5);
     createCanvas(matrix[0].length * side, matrix.length * side);
-    background('#acacac');
+    background('#ffffff');
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -87,7 +95,7 @@ function setup() {
 
 
 function draw() {
-
+    noStroke()
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -95,7 +103,7 @@ function draw() {
                 fill("green");
             }
             else if (matrix[y][x] == 0) {
-                fill("#acacac");
+                fill("#ffffff");
             }
             else if (matrix[y][x] == 2) {
                 fill("yellow");
@@ -106,8 +114,11 @@ function draw() {
             else if (matrix[y][x] == 4) {
                 fill("#ff924f");
             }
+            else if (matrix[y][x] == 5) {
+                fill("#000000");
+            }
             else if (matrix[y][x] == 228) {
-                fill("#111111");
+                fill(Math.floor(Math.random()* 255),Math.floor(Math.random()* 255),Math.floor(Math.random()* 255));
             }
 
             rect(x * side, y * side, side, side);

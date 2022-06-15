@@ -1,0 +1,1 @@
+class Hole extends Creature {}

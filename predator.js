@@ -1,6 +1,6 @@
 class Predator extends Creature {
     constructor(x, y) {
-        super(x,y);
+        super(x, y);
         this.energy = 29;
     }
     getNewCoordinates() {
@@ -41,16 +41,21 @@ class Predator extends Creature {
         this.energy--
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
-        if (newCell && this.energy >= 0) {
-            var newX = newCell[0];
-            var newY = newCell[1];
-            matrix[newY][newX] = matrix[this.y][this.x]
-            matrix[this.y][this.x] = 0
-            this.x = newX
-            this.y = newY
-        } else {
-            this.die()
-        }
+        var emptyCells5 = this.chooseCell(5);
+        var newCell5 = random(emptyCells5);
+        if (newCell5 && this.energy >= 0) {
+            this.die();
+        } else
+            if (newCell && this.energy >= 0) {
+                var newX = newCell[0];
+                var newY = newCell[1];
+                matrix[newY][newX] = matrix[this.y][this.x]
+                matrix[this.y][this.x] = 0
+                this.x = newX
+                this.y = newY
+            } else {
+                this.die()
+            }
     }
 
     eat() {

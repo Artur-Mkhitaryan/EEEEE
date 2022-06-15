@@ -56,6 +56,11 @@ class GrassEater extends Creature {
     eat() {
         var emptyCells = this.chooseCell(1);
         var newCell = random(emptyCells);
+        var emptyCells5 = this.chooseCell(5);
+        var newCell5 = random(emptyCells5);
+        if (newCell5){
+            this.die();
+        } else
         if (newCell) {
             this.energy++
             var newX = newCell[0];

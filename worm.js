@@ -39,6 +39,11 @@ class Worm extends Creature {
         this.multiply++
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
+        var emptyCells5 = this.chooseCell(5);
+        var newCell5 = random(emptyCells5);
+        if (newCell5) {
+            this.die();
+        }
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -46,6 +51,15 @@ class Worm extends Creature {
             matrix[this.y][this.x] = 0
             this.x = newX
             this.y = newY
+        }
+    }
+    die() {
+        matrix[this.y][this.x] = 0
+        for (var i in WormArr) {
+            if (this.x == WormArr[i].x && this.y == WormArr[i].y) {
+                WormArr.splice(i, 1);
+                break;
+            }
         }
     }
 }

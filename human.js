@@ -2,11 +2,10 @@ class Human extends Creature {
     constructor(x, y) {
         super(x, y);
         this.cooldown = 10;
-    }
-    getNewCoordinates() {
-        return super.getNewCoordinates;
+        this.energy = 10;
     }
     chooseCell(character) {
+        super.getNewCoordinates()
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
@@ -32,10 +31,13 @@ class Human extends Creature {
         var newCell3 = random(emptyCells3);
         var emptyCells4 = this.chooseCell(4);
         var newCell4 = random(emptyCells4);
+        var emptyCells5 = this.chooseCell(5);
+        var newCell5 = random(emptyCells5);
 
         this.cooldown--
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        if (this.energy <= 0){
+            this.die();
+        } else
         if (newCell3 && this.cooldown <= 0) {
             var newX = newCell3[0];
             var newY = newCell3[1];
@@ -49,7 +51,8 @@ class Human extends Creature {
                     break;
                 }
             }
-            this.cooldown = 5
+            this.cooldown = 5;
+            this.energy+=2
         } else
             if (newCell2 && this.cooldown <= 0) {
                 var newX = newCell2[0];
@@ -64,7 +67,8 @@ class Human extends Creature {
                         break;
                     }
                 }
-                this.cooldown = 4
+                this.cooldown = 4;
+                this.energy++
             } else
                 if (newCell4 && this.cooldown <= 0) {
                     var newX = newCell4[0];
@@ -79,7 +83,7 @@ class Human extends Creature {
                             break;
                         }
                     }
-                    this.cooldown = 3
+                    this.cooldown = 3;
                 } else
                     if (newCell1 && this.cooldown <= 0) {
                         var newX = newCell1[0];
@@ -94,17 +98,33 @@ class Human extends Creature {
                                 break;
                             }
                         }
-                        this.cooldown = 1
+                        this.cooldown = 3;
+                        this.energy-=2
                     } else
-                        if (newCell && this.cooldown <= 0) {
-                            var newX = newCell[0];
-                            var newY = newCell[1];
-                            matrix[newY][newX] = matrix[this.y][this.x]
-                            matrix[this.y][this.x] = 0
-                            this.x = newX
-                            this.y = newY
+                    if (newCell && this.cooldown <= 0) {
+                        var newX = newCell[0];
+                        var newY = newCell[1];
+                        matrix[newY][newX] = matrix[this.y][this.x]
+                        matrix[this.y][this.x] = 0
+                        this.x = newX
+                        this.y = newY
 
-                            this.cooldown = 1
-                        }
+                        this.cooldown = 1;
+                        this.energy
+                    }
+                    else
+                    if (newCell5 && this.cooldown <= 0) {
+                        this.die();
+                    }
+}
+    die(){
+        matrix[this.y][this.x] = 0
+        for (var i in HumanArr) {
+            if (this.x == HumanArr[i].x && this.y == HumanArr[i].y) {
+                HumanArr.splice(i, 1);
+                break;
+            }
+        }
+
     }
 }
