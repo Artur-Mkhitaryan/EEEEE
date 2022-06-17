@@ -1,4 +1,6 @@
-class Worm extends Creature {
+let Creature = require("./creature")
+
+module.exports = class Worm extends Creature {
     getNewCoordinates() {
         return super.getNewCoordinates;
     }
@@ -20,7 +22,7 @@ class Worm extends Creature {
 
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
 
         if (newCell && this.multiply >= 3) {
             var newX = newCell[0];
@@ -38,9 +40,9 @@ class Worm extends Creature {
     move() {
         this.multiply++
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
         var emptyCells5 = this.chooseCell(5);
-        var newCell5 = random(emptyCells5);
+        var newCell5 = emptyCells5[Math.round(Math.random * emptyCells5.length)];
         if (newCell5) {
             this.die();
         }

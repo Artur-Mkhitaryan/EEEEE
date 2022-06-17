@@ -1,4 +1,6 @@
-class Grass extends Creature {
+let Creature = require("./creature")
+
+module.exports = class Grass extends Creature {
         chooseCell(character) {
         var found = [];
         for (var i in this.directions) {
@@ -17,7 +19,7 @@ class Grass extends Creature {
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
 
         if (newCell && this.multiply >= 14) {
             var newX = newCell[0];
@@ -32,7 +34,7 @@ class Grass extends Creature {
     eat() {
         this.multiply++;
         var emptyCells = this.chooseCell(4);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
 
         if (newCell && this.multiply >= 10) {
             var newX = newCell[0];

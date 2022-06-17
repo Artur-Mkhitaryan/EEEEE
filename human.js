@@ -1,4 +1,6 @@
-class Human extends Creature {
+let Creature = require("./creature")
+
+module.exports = class Human extends Creature {
     constructor(x, y) {
         super(x, y);
         this.cooldown = 10;
@@ -22,17 +24,18 @@ class Human extends Creature {
 
     move() {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
         var emptyCells1 = this.chooseCell(1);
-        var newCell1 = random(emptyCells1);
+        var newCell1 = emptyCells1[Math.round(Math.random * emptyCells1.length)];
         var emptyCells2 = this.chooseCell(2);
-        var newCell2 = random(emptyCells2);
+        var newCell2 = emptyCells2[Math.round(Math.random * emptyCells2.length)];
         var emptyCells3 = this.chooseCell(3);
-        var newCell3 = random(emptyCells3);
+        var newCell3 = emptyCells3[Math.round(Math.random * emptyCells3.length)];
         var emptyCells4 = this.chooseCell(4);
-        var newCell4 = random(emptyCells4);
+        var newCell4 = emptyCells4[Math.round(Math.random * emptyCells4.length)];
         var emptyCells5 = this.chooseCell(5);
-        var newCell5 = random(emptyCells5);
+        var newCell5 = emptyCells5[Math.round(Math.random * emptyCells5.length)];
+
 
         this.cooldown--
         if (this.energy <= 0){
