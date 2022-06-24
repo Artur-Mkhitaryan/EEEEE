@@ -26,7 +26,7 @@ module.exports = class Predator extends Creature {
 
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
+        var newCell = emptyCells[Math.round(Math.random() * emptyCells.length)];
 
         if (newCell) {
             var newX = newCell[0];
@@ -42,9 +42,9 @@ module.exports = class Predator extends Creature {
     move() {
         this.energy--
         var emptyCells = this.chooseCell(0);
-        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
+        var newCell = emptyCells[Math.round(Math.random() * emptyCells.length)];
         var emptyCells5 = this.chooseCell(5);
-        var newCell5 = emptyCells5[Math.round(Math.random * emptyCells5.length)];
+        var newCell5 = emptyCells5[Math.round(Math.random() * emptyCells5.length)];
         if (newCell5 && this.energy >= 0) {
             this.die();
         } else
@@ -62,9 +62,9 @@ module.exports = class Predator extends Creature {
 
     eat() {
         var emptyCells = this.chooseCell(2);
-        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
+        var newCell = emptyCells[Math.round(Math.random() * emptyCells.length)];
         var emptyCells2 = this.chooseCell(4);
-        var newCell2 = emptyCells2[Math.round(Math.random * emptyCells2.length)];
+        var newCell2 = emptyCells2[Math.round(Math.random() * emptyCells2.length)];
         if (newCell) {
             this.energy += 2
             var newX = newCell[0];

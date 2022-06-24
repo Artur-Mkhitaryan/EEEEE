@@ -22,7 +22,7 @@ module.exports = class Worm extends Creature {
 
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
+        var newCell = emptyCells[Math.round(Math.random() * emptyCells.length)];
 
         if (newCell && this.multiply >= 3) {
             var newX = newCell[0];
@@ -40,9 +40,9 @@ module.exports = class Worm extends Creature {
     move() {
         this.multiply++
         var emptyCells = this.chooseCell(0);
-        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
+        var newCell = emptyCells[Math.round(Math.random() * emptyCells.length)];
         var emptyCells5 = this.chooseCell(5);
-        var newCell5 = emptyCells5[Math.round(Math.random * emptyCells5.length)];
+        var newCell5 = emptyCells5[Math.round(Math.random() * emptyCells5.length)];
         if (newCell5) {
             this.die();
         }

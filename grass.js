@@ -3,6 +3,7 @@ let Creature = require("./creature")
 module.exports = class Grass extends Creature {
         chooseCell(character) {
         var found = [];
+        // console.log(this.directions);
         for (var i in this.directions) {
             var x = this.directions[i][0];
             var y = this.directions[i][1];
@@ -19,14 +20,14 @@ module.exports = class Grass extends Creature {
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
+        var newCell = emptyCells[Math.round(Math.random() * emptyCells.length)];
 
         if (newCell && this.multiply >= 14) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 1;
 
-            var newGrass = new Grass(newX, newY, 1);
+            var newGrass = new Grass(newX, newY);
             grassArr.push(newGrass);
             this.multiply = 0;
         }
@@ -34,14 +35,14 @@ module.exports = class Grass extends Creature {
     eat() {
         this.multiply++;
         var emptyCells = this.chooseCell(4);
-        var newCell = emptyCells[Math.round(Math.random * emptyCells.length)];
+        var newCell = emptyCells[Math.round(Math.random() * emptyCells.length)];
 
         if (newCell && this.multiply >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 1;
 
-            var newGrass = new Grass(newX, newY, 1);
+            var newGrass = new Grass(newX, newY);
             grassArr.push(newGrass);
             this.multiply = 0;
             for (var i in WormArr) {
@@ -51,7 +52,8 @@ module.exports = class Grass extends Creature {
                 }
             }
 
-        } else if (!newCell) {
+        }
+         else if (!newCell) {
             this.mul()
         }
 
